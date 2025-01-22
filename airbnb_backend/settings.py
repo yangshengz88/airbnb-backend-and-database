@@ -19,6 +19,12 @@ SITE_ID = 1
 
 WEBSITE_URL = 'http:localhost:8000'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    }
+}
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
@@ -51,6 +57,18 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
+]
+
+CORS_ORIGINS_WHITELIST = [
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
+]
+
+
+
 CORS_ALLOW_ALL_ORIGINS = True
 REST_AUTH = {
     "USE_JWT": True,
@@ -61,6 +79,7 @@ REST_AUTH = {
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,7 +134,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'airbnb_backend.wsgi.application'
-
+ASGI_APPLICATION = 'airbnb_backend.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
