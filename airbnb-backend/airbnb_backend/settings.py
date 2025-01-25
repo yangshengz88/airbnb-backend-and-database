@@ -1,6 +1,9 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,11 +16,16 @@ DEBUG = bool(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
+
 AUTH_USER_MODEL = "useraccount.User"
 
 SITE_ID = 1
 
-WEBSITE_URL = 'http:localhost:8000'
+if DEBUG:
+
+    WEBSITE_URL = 'http:localhost:8000'
+else:
+    WEBSITE_URL = 'http://18.219.39.111:1337'
 
 CHANNEL_LAYERS = {
     'default': {
@@ -55,16 +63,24 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
+    'http://18.219.39.111:1337',
+    'http://18.219.39.111'
+
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
+    'http://18.219.39.111:1337',
+    'http://18.219.39.111'
+
 ]
 
 CORS_ORIGINS_WHITELIST = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
+    'http://18.219.39.111:1337',
+    'http://18.219.39.111'
 ]
 
 

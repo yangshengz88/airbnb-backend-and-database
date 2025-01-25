@@ -1,0 +1,43 @@
+---
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - backend
+    volumes:
+      - media-volume:/usr/src/airbnb_backend/media
+  backend:
+    build: ./airbnb-backend
+    command: gunicorn airbnb_backend.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./airbnb-backend:/usr/src/airbnb_backend
+      - media-volume:/usr/src/airbnb_backend/media
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    depends_on:
+      - database
+      - daphne
+    
+  daphne:
+    build: ./airbnb_backend
+    command: daphne --bind 0.0.0.0 -p 8002 airbnb_backend.asgi:application
+    ports:
+      - 8002:8002
+  database:
+    image: postgres:15
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_PASSWORD=postgrespassword
+      - POSTGRES_DB=airbnb
+
+volumes:
+  postgres-data:
+  media-volume:
