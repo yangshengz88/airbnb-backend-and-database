@@ -25,7 +25,7 @@ services:
       - daphne
     
   daphne:
-    build: ./airbnb_backend
+    build: ./airbnb-backend
     command: daphne --bind 0.0.0.0 -p 8002 airbnb_backend.asgi:application
     ports:
       - 8002:8002
