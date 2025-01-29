@@ -29,6 +29,8 @@ services:
     command: daphne --bind 0.0.0.0 -p 8002 airbnb_backend.asgi:application
     ports:
       - 8002:8002
+    env_file:
+      - ./.env
   database:
     image: postgres:15
     volumes:
