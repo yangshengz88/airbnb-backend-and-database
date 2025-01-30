@@ -24,7 +24,7 @@ if DEBUG:
 
     WEBSITE_URL = 'http:localhost:8000'
 else:
-    WEBSITE_URL = 'http://18.219.39.111:1337'
+    WEBSITE_URL = 'http://3.139.80.82:1337'
 
 CHANNEL_LAYERS = {
     'default': {
@@ -62,24 +62,24 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
-    'http://18.219.39.111:1337',
-    'http://18.219.39.111'
+    'http://3.139.80.82:1337',
+    'http://3.139.80.82'
 
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
-    'http://18.219.39.111:1337',
-    'http://18.219.39.111'
+    'http://3.139.80.82:1337',
+    'http://3.139.80.82'
 
 ]
 
 CORS_ORIGINS_WHITELIST = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
-    'http://18.219.39.111:1337',
-    'http://18.219.39.111'
+    'http://3.139.80.82:1337',
+    'http://3.139.80.82'
 ]
 
 
