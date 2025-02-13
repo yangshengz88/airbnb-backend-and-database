@@ -22,7 +22,7 @@ SITE_ID = 1
 
 if DEBUG:
 
-    WEBSITE_URL = 'http:localhost:8000'
+    WEBSITE_URL = 'http://localhost:8000'
 else:
     WEBSITE_URL = 'http://3.139.80.82:1337'
 

@@ -48,4 +48,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.avatar:
             return f"{settings.WEBSITE_URL}{self.avatar.url}"
         else:
-            return ''
+            return ""
