@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from .models import User
 
+
 from .serializers import UserDetailSerializer
 from property.serializers import ReservationsListSerializer
 
@@ -23,3 +24,15 @@ def reservations_list(request):
     serializer = ReservationsListSerializer(reservations, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+@api_view(['POST', 'FILES'])
+def profile_detail(request):
+    try:
+        user = User.objects.get(pk=request.user.id)
+        user.avatar= request.FILES['avatar']
+        user.name = request.POST.get('name', '')
+        user.save()
+
+        return JsonResponse({'success': True})
+    except Exception as e:
+        print('Error', e)
+        return JsonResponse({'success': False})
